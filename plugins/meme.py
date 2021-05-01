@@ -17,7 +17,7 @@ from userge.utils import runcmd, take_screen_shot
     allow_via_bot=False,
 )
 async def meme_(message: Message):
-    """ meme for media """
+    """meme for media"""
     meme_file = None
     replied = message.reply_to_message
     if not (replied and message.input_str):
