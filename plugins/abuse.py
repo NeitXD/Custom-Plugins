@@ -92,41 +92,47 @@ ABUSEHARD_STRING = [
     "`Uss Ne Hothon Se Chhu Kar Lowd* Pe Nasha Kar Diya; Lu*D Ki Baat To Aur Thi, Uss Ne To Jhato* Ko Bhi Khada Kar Diya!`",
 ]
 
+
 @userge.on_cmd("abuse$", about="Abuse means gali XD")
 async def abuse_func(message):
     strAbu = random.randint(0, len(ABUSE_STRINGS) - 1)
     # input_str = event.pattern_match.group(1)
     reply_text = ABUSE_STRINGS[strAbu]
     await message.edit(reply_text)
-    
+
+
 @userge.on_cmd("rendi$", about="Randiiiiiiiiiii")
 async def rendi_func(message):
     strRen = random.randint(0, len(RENDISTR) - 1)
     # input_str = event.pattern_match.group(1)
     reply_text = RENDISTR[strRen]
     await message.edit(reply_text)
-    
+
+
 @userge.on_cmd("chutiya$", about="Chutiyaaaa Saalaaaaaa")
 async def chutiya_func(message):
     strChu = random.randint(0, len(CHU_STRINGS) - 1)
     # input_str = event.pattern_match.group(1)
     reply_text = CHU_STRINGS[strChu]
     await message.edit(reply_text)
-    
+
+
 @userge.on_cmd("fucc$", about="Fuuuuuuuucccccc*kkkkkkkkkkkkk")
 async def fucc_func(message):
     strFuk = random.randint(0, len(FUK_STRINGS) - 1)
     # input_str = event.pattern_match.group(1)
     reply_text = FUK_STRINGS[strFuk]
     await message.edit(reply_text)
-    
+
+
 @userge.on_cmd("gshayri$", about="Galio se bhari shayri (Sort of)")
 async def gshayri_func(message):
     strSha = random.randint(0, len(THANOS_STRINGS) - 1)
     # input_str = event.pattern_match.group(1)
     reply_text = THANOS_STRINGS[strSha]
     await message.edit(reply_text)
-    
+
+
 @userge.on_cmd("abusehard$", about="Hard Abusives")
 async def abusehard_func(message):
     strHar = random.randint(0, len(ABUSEHARD_STRING) - 1)
