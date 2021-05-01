@@ -2,9 +2,9 @@
 
 """Spammy Animations Module 2☠️"""
 import asyncio
-from collections import deque
 
 from userge import Message, userge
+
 
 @userge.on_cmd("call$", about={"header": "Call TG headquarters"})
 async def call_(message: Message):
@@ -35,7 +35,6 @@ async def call_(message: Message):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await message.edit(animation_chars[i % 18])
-        
 
 
 @userge.on_cmd("deploy$", about={"header": "Deploy UB on Heroku"})
