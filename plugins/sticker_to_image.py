@@ -3,8 +3,8 @@
 import os
 
 from userge import Config, Message, userge
-
 from userge.utils import media_to_image
+
 
 @userge.on_cmd(
     "imgs",
@@ -14,7 +14,6 @@ from userge.utils import media_to_image
         "usage": "{tr}imgs [reply to media]",
     },
 )
-
 async def img(message: Message):
 
     if not message.reply_to_message:
