@@ -4,6 +4,7 @@ import os
 
 from userge import Config, Message, userge
 
+
 @userge.on_cmd(
     "stick",
     about={
@@ -12,7 +13,6 @@ from userge import Config, Message, userge
         "usage": "{tr}stick [reply to image]",
     },
 )
-
 async def stik_(message: Message):
 
     reply = message.reply_to_message
@@ -44,15 +44,10 @@ async def stik_(message: Message):
     if os.path.exists(down_file_n):
 
         stikk = await userge.send_document(
-
             message.chat.id,
-
             down_file_n,
-
             force_document=False,
-
             reply_to_message_id=reply_m_id,
-
         )
 
         os.remove(down_file_n)
