@@ -10,7 +10,6 @@ import PIL
 from imutils.perspective import four_point_transform
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 from skimage.filters import threshold_local
-
 from userge import Config, Message, userge
 
 if not os.path.exists(f"{Config.DOWN_PATH}/pdf_merge/"):
