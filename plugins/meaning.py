@@ -1,6 +1,6 @@
 from PyDictionary import PyDictionary
-
 from userge import Message, userge
+
 
 @userge.on_cmd(
     "mng",
@@ -11,10 +11,9 @@ from userge import Message, userge
         ],
     },
 )
-
 async def meaning_wrd(message: Message):
 
-    """ meaning of word """
+    """meaning of word"""
 
     await message.edit("`Searching for meaning...`")
 
@@ -48,6 +47,7 @@ async def meaning_wrd(message: Message):
 
             await message.err(f"Couldn't fetch meaning of {word}")
 
+
 @userge.on_cmd(
     "syn",
     about={
@@ -57,10 +57,9 @@ async def meaning_wrd(message: Message):
         ],
     },
 )
-
 async def synonym_wrd(message: Message):
 
-    """ synonym of word """
+    """synonym of word"""
 
     await message.edit("`Searching for synonyms...`")
 
@@ -90,6 +89,7 @@ async def synonym_wrd(message: Message):
 
             await message.err(f"Couldn't fetch synonyms of {word}")
 
+
 @userge.on_cmd(
     "ayn",
     about={
@@ -99,10 +99,9 @@ async def synonym_wrd(message: Message):
         ],
     },
 )
-
 async def antonym_wrd(message: Message):
 
-    """ antonym of word """
+    """antonym of word"""
 
     await message.edit("`Searching for antonyms...`")
 
