@@ -3,16 +3,13 @@
 import asyncio
 
 import aiofiles
-
 import ujson
-
 from pyrogram import filters
-
 from pyrogram.errors import FloodWait
-
 from userge import Config, Message, get_collection, userge
 
 SAVED_SETTINGS = get_collection("CONFIGS")
+
 
 async def _init() -> None:
 
@@ -28,35 +25,25 @@ async def _init() -> None:
 
         await fn.write(json_data)
 
+
 tagLoggingFilter = filters.create(lambda _, __, ___: Config.TAG_LOGGING)
 
+
 @userge.on_cmd(
-
     "tag_log",
-
     about={
-
         "header": "Toggle logging of PM and groups[all]",
-
         "description": "Logs all PMs and group mentions",
-
         "flag": {
-
             "-c": "Check tag_log status",
-
         },
-
         "usage": "{tr}tag_log",
-
     },
-
     allow_channels=False,
-
 )
-
 async def all_log(message: Message):
 
-    """ enable / disable [all Logger] """
+    """enable / disable [all Logger]"""
 
     if not hasattr(Config, "TAG_LOGGING"):
 
@@ -65,11 +52,8 @@ async def all_log(message: Message):
     if not Config.PM_LOG_GROUP_ID:
 
         return await message.edit(
-
             "Make a group and provide it's ID in `PM_LOG_GROUP_ID` var.",
-
             del_in=5,
-
         )
 
     flag = message.flags
@@ -101,17 +85,13 @@ async def all_log(message: Message):
         await message.edit("`Tag logger enabled !`", del_in=3)
 
     await SAVED_SETTINGS.update_one(
-
         {"_id": "TAG_LOGGING"}, {"$set": {"is_active": Config.TAG_LOGGING}}, upsert=True
-
     )
 
+
 @userge.on_message(
-
     filters.group & ~filters.bot & ~filters.me & tagLoggingFilter,
-
 )
-
 async def grp_log(_, message: Message):
 
     if not Config.PM_LOG_GROUP_ID:
@@ -175,33 +155,21 @@ async def grp_log(_, message: Message):
                 await asyncio.sleep(0.5)
 
                 fwd = await userge.forward_messages(
-
                     Config.PM_LOG_GROUP_ID,
-
                     message.chat.id,
-
                     message_ids=replied_m_id,
-
                 )
 
                 await userge.send_message(
-
                     Config.PM_LOG_GROUP_ID,
-
                     log1,
-
                     parse_mode="html",
-
                     reply_to_message_id=fwd.message_id,
-
                     disable_web_page_preview=True,
-
                 )
 
                 await userge.forward_messages(
-
                     Config.PM_LOG_GROUP_ID, message.chat.id, message_ids=sender_m_id
-
                 )
 
             except FloodWait as e:
@@ -221,35 +189,26 @@ async def grp_log(_, message: Message):
             await asyncio.sleep(0.5)
 
             await userge.send_message(
-
                 Config.PM_LOG_GROUP_ID,
-
                 log2,
-
                 parse_mode="html",
-
                 disable_web_page_preview=True,
-
             )
 
             await asyncio.sleep(0.5)
 
             await userge.forward_messages(
-
                 Config.PM_LOG_GROUP_ID, message.chat.id, message_ids=text_id
-
             )
 
         except FloodWait as e:
 
             await asyncio.sleep(e.x + 3)
 
+
 @userge.on_message(
-
     filters.private & ~filters.bot & ~filters.edited & tagLoggingFilter, group=5
-
 )
-
 async def pm_log(_, message: Message):
 
     sender_id = message.from_user.id
@@ -293,15 +252,10 @@ async def pm_log(_, message: Message):
             await asyncio.sleep(0.5)
 
             await userge.send_message(
-
                 Config.PM_LOG_GROUP_ID,
-
                 log,
-
                 parse_mode="html",
-
                 disable_web_page_preview=True,
-
             )
 
         await asyncio.sleep(0.5)
@@ -311,30 +265,23 @@ async def pm_log(_, message: Message):
             replied_id = message.reply_to_message.message_id
 
             fwd = await userge.forward_messages(
-
                 Config.PM_LOG_GROUP_ID, chat_id, replied_id, disable_notification=True
-
             )
 
             await userge.send_message(
-
                 Config.PM_LOG_GROUP_ID,
-
                 f"↪️ #Replied with...⬇",
-
                 reply_to_message_id=fwd.message_id,
-
             )
 
         await userge.forward_messages(
-
             Config.PM_LOG_GROUP_ID, chat_id, id, disable_notification=True
-
         )
 
     except FloodWait as e:
 
         await asyncio.sleep(e.x + 3)
+
 
 def user(info):
 
