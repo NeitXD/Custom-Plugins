@@ -8,7 +8,6 @@ import aiofiles
 import ujson
 from pyrogram import filters
 from pyrogram.errors import FloodWait
-
 from userge import Config, Message, get_collection, userge
 
 SAVED_SETTINGS = get_collection("CONFIGS")
